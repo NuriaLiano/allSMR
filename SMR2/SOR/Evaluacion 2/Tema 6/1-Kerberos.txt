@@ -1,0 +1,47 @@
+Cambiar nombre al equipo
+	sudo gedit /etc/hostname
+	sudo gedit /etc/hosts
+
+Instalamos: ssh y openssh-client
+
+Configurar KERBEROS
+	sudo apt-get install samba winbind krb5-config krb5-user
+Copia de Seguridad del fichero /etc/krb5.conf
+	sudo cp /etc/krb5.conf /etc/krb5.conf.bak
+Modificamos el archivo con lo siguiente:
+logging]
+default = FILE:/var/log/krb5libs.log
+kdc = FILE:/var/log/krb5kdc.log
+admin_server = FILE:/var/log kadmind.log
+
+[libdefaults]
+default_realm = SISTEMAS.COM
+dns_lookup_realm = false
+dns_lookup_kdc = false
+ticket_lifetime = 24h
+forwardable = yes
+
+[realms]
+SISTEMAS.COM = {
+ kdc = sistemas.com
+ admin_server = sistemas.com
+ default_domain = sistemas.com
+}
+
+[domain_realm]
+.kerberos.server = SISTEMAS.COM
+.sistemas.com = SISTEMAS.COM
+
+[kdc]
+profile = /var/kerberos/krd5kdc/kdc.conf
+
+[appdefaults]
+pam = {
+ debug = false
+ ticket_lifetime = 36000
+ renew_lifetime = 36000
+ forwardable = true
+ krb4_convert = false
+}
+Guardar y reiniciar, despues kinit Administrador@SISTEMAS.COM
+

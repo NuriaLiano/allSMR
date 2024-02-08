@@ -1,0 +1,56 @@
+Configurar SAMBA
+	sudo gedit /etc/samba/smb.conf
+
+[global]
+ workgroup = SISTEMAS
+ realm = SISTEMAS.COM
+ preferred master = no
+ server string = Linux Machine
+ security = ADS
+ encrypt passwords = yes
+ log level = 3
+ log file = /var/log/samba/%m
+ max log size = 50
+ printcap name = cups
+ printing = cups
+ winbind enum users = Yes
+ winbind nested groups = Yes
+ idmap uid = 600-20000
+ idmap gid = 600-20000
+ template shell = /bin/bash
+
+[homes]
+ comment = Directorios usuarios
+ valid users = %S
+ read only = No
+ browseable = No
+
+[printers]
+comment = All Printers
+path = /var/spool/cups
+browseable = no
+pintable = yes
+guest ok = yes
+[leer]
+path = /home/compartidas/escribir
+browseable = yes
+read only = yes
+[escribir]
+paht = /home/compartidas/escribir
+browseable = yes
+read only = no
+guest ok = yes
+writeable = yes
+Guardamos y reiniciamos el servicio con el comando:
+	sudo /etc/init.d/smbd restart
+
+Unirse al dominio
+	 sudo net ads join -U Administrador
+para buscar la carpeta desde Ubuntu
+smb://IPDELSERVIDOR --> smb://192.168.30.1
+
+*Tambien se pueden especificar para un recurso en general que usuarios lo pueden utilizar sin especificar si es lectura o escritura
+valid user = usuario1, usuario2
+*En el parámetro read list se añaden los usuarios y los grupos DL 
+read list = usuario1,"DL_leer_presupuestos
+write list = "DL_escribir_presupuestos

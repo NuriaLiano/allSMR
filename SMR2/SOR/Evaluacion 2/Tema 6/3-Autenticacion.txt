@@ -1,0 +1,49 @@
+Configurar la AUTENTICACIÓN
+
+realizamos copia de seguridad
+	sudo cd /etc/nsswitch.conf /etc/nsswitch.conf.bak
+Modificamos el fichero:
+	sudo gedit /etc/nsswitch.conf
+
+
+passwd: files winbind
+shadow: files winbind
+group: files winbind
+
+hosts: files dns wins
+
+bootparams: nisplus [NOTFOUND=return] files
+
+ethers : db files
+netmasks: files
+networks: files dns
+protocols:db files
+rpc: files
+services: files
+
+netgoup: files
+
+publickey: nisplus
+
+automount: files
+aliases: files nisplus
+
+Reiniciamos el servicio:
+	sudo /etc/init.d/winbind restart
+Comprobamos la configuracion:  wbinfo -u
+
+Realizamos copia de seguridad:
+	sudo cp /etc/pam.d /etc/pam.d.bak
+host+F1: Terminal de texto- iniciamos sesion
+host+F7: volver al terminal grafico
+
+Ejecutamos sudo pam-auth-update
+Selecionamos las dos primeras
+
+Editamos el fichero sudo gedit /etc/pam.d/common-session 
+y añadimos al final: session required pam_mkhomedir.so umask=0022 skel=/etc/skel
+
+Permitir en la ventana de inicio enntrar como cualquier usuario
+modificamos 	sudo gedit /urs/share/lightdm/lightdm.conf
+Añadimos la linea: 	greeter-show-manual-login=true
+	

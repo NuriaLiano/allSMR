@@ -1,0 +1,18 @@
+Cambiar nombre al equipo
+	sudo gedit /etc/hostname
+	sudo gedit /etc/hosts
+Reiniciamos el equipo
+
+Descargamos: sudo apt-get install pbis-open-8.5.0.153.linux.x86.deb.sh
+estara en el directorio: cd $HOME
+/Descargas
+
+chmod +x pbis-open-8.5.0.153.sh
+sudo ./pbis-open-8.5.0.153.sh
+
+
+Para permitir en la ventana de inicio entrar con cualquier
+usuario Hay que modificar el fichero
+	sudo gedit /usr/share/lightdm/lightdm.conf.d
+(primero haces una copia por si acaso) y 
+añades la línea: greeter-show-manual-login=true

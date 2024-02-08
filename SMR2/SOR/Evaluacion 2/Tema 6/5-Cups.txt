@@ -1,0 +1,9 @@
+Instalamos el paquete cups:
+	sudo apt-get install cups hplip-gui
+
+Instalamos impresora
+	Sistema-Adminsitracion-Impresion
+
+Desde el navegador accedemos a:
+	http://localhost:631
+

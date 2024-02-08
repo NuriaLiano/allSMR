@@ -1,0 +1,14 @@
+Desde un usuario de Linux (usuario)
+instalar el paquete 
+sudo apt-get install gnome-panel
+
+hacer un fichero ejecutable
+touch lanzador --> crea el fichero
+sudo nano lanzador --> le modifica
+ gnome-desktop-item-edit ~/Escritorio --create -new --> escribirlo dentro del archivo
+
+dar permisos
+chmod u+x lanzador
+
+abrir el lanzador
+./lanzador
