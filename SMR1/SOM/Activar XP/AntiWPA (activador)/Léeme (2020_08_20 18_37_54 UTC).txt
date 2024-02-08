@@ -1,0 +1,10 @@
+Para activar, sólo hace falta:
+
+Ejecutar el archivo "AntiWPA".
+En el símbolo del sistema, presionar Enter.
+Esperamos a que trabaje.
+
+Recomendado: Reiniciar el PC.
+
+
+Antonio
