@@ -1,0 +1,3 @@
+Sistemas de gestion de contenidos de aprendizaje - EVA
+LCMS- SISTEMA DE GESTION DE CONTENIDOS PARA LA ENSEÑANZA
+Contenidos para la gestion de contenidos, los lcms permiten crear pequeños modulos de aprendizaje que se integran en un programa de formacion mas amplio, almacenarlos y recuperalos en el momento mas oportuno. 

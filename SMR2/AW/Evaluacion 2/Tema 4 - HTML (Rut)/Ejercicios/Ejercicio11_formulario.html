@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+ 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Rellena</title>
+</head>
+ 
+<body>
+ 
+<h3>Rellena</h3>
+ 
+<form action="/php/insertar_cv.php" method="post" enctype="multipart/form-data">
+Nombre <br/>
+<input type="text" name="nombre" value="" size="20" maxlength="30" />
+ 
+<br/>
+ 
+Apellidos <br/>
+<input type="text" name="apellidos" value="" size="50" maxlength="80" />
+<br/>
+ 
+Email<br/> <input type="text" name="email" value="" maxlength="20" /> 
+<br/>
+ 
+<br/>
+ 
+Sexo <br/>
+<input type="radio" name="sexo" value="varon" checked="checked" /> Varon <br/>
+<input type="radio" name="sexo" value="mujer" /> Mujer
+ 
+<br/><br/>
+<br/><br/>
+ 
+<input type="submit" name="enviar" value="enviar" />
+<input type="reset" name="limpiar" value="reestablecer" />
+ 
+ 
+</form>
+ 
+</body>
+ 
+</html>

@@ -1,0 +1,238 @@
+Crear base de datos:
+create database carlos;
+show databases;
+use carlos;
+create table recursos(n.campo tipocampo);
+drop table alumnos;
+describe alumnos(Nombre VARCHAR(15), DNI vARCHAR(9));
+
+
+create database EMPRESA;
+show databases;
+use carlos;
+create table VENDEDORES(COD_VEND INT(2), NOMBRE VARCHAR(15), DNI VARCHAR(9), F_ALTA DATE, PRIMARY KEY(COD_VEND));
+create table VENTAS(COD_VENTA INT(2), PRECIO DOUBLE, FECHA DATE, COD_VEND INT(2), PRIMARY KEY(COD_VENTA), FOREIGN KEY (COD_VEND) REFERENCES VENDEDORES (COD_VEND));
+describe VENDEDORES
+describe VENTAS
+INSERT INTO VENDEDORES(COD_VEND, NOMBRE, DNI, F_ALTA) VALUES(3,"JUAN", "55464649D", "1999-02-10");
+SELECT * FROM VENDEDORES;
+
+
+Obtén de la tabla clientes los datos de todos los clientes 
+use aseguradora;
+SELECT * FROM clientes;
+
+Sacar dni y nombre de clientes
+SELECT DNI, NOMBRE FROM clientes;
+
+Obtener datos clientes de santander
+
+SELECT * FROM clientes WHERE Ciudad="Santander";
+
+Cambiar ciudad de Juan
+
+UPDATE CLIENTES SET CIUDAD="Torrelavega" WHERE DNI="2";
+
+Borrar un registro
+
+DELETE FROM CLIENTES WHERE Ciudad="Santander";
+
+Para ver permisos:
+
+show grants for cesar@"localhost";
+
+Para cambiar datos de un registro:
+
+update clientes set dni="8" where dni="7";
+
+Para conectar al servidor:
+
+cd wamp/bin/mysql/mysql5.5.16/bin
+   
+
+Entrar en base de datos de otro ordenador con usuario creado:
+
+mysql -u JUAN -h "10.0.2.7"
+
+
+CREAR TABLA ASEGURADORA
+
+
+use aseguradoras;
+create table aseguradoras1(codiaseg varchar(20), denominacion varchar(50), localidad varchar(50), prymary key(codiase));
+create table hogar1(numpoliza varchar(10), catalogacion varchar(20), superficie int(11), primary key(numpoliza));
+
+
+copiar datos de una tabla a otra:
+insert into aseguradora1 select * from aseguradoras;
+
+privilegios:
+grant update(localidad) on aseguradoras.aseguradora1 to pepe@localhost";
+grant delete on aseguradroas.hogar1 to pepe@"localhost";
+
+Crear usuario nuevo  que tenga sobre el campo poblacion tenga privilegio de actualizar y sobre la tabla el privilegio de borrar
+
+grant select, update(poblacion), delete on ve.clientes to luis@"localhost";
+
+Para ver permisos:
+show grants for luis@"localhost";
+
+
+Cambiar datos:
+update clientes set poblacion="santander" where codcliente=4;
+
+Ver datos de clientes;
+select * from clientes;
+
+Ver datos ventas:
+select * from ventas;
+
+
+Quitar privilegios:
+revoke select, update(poblacion), delete on ve.clientes from luis@"localhost";
+
+
+
+create table n_vendedores (cod_vendedor int(2), nom_vendedor varchar(14), fecha_alta date, nif varchar(9), direc varchar(10), poblacion varchar(25), cod_postal varchar(9), telefono varchar(9), primary key (cod_vendedor));
+
+create table n_ventas (cod_vendedor int(11), cod_producto int(11), fecha date, kilos double, primary key (cod_vendedor, cod_producto, fecha), foreign key (cod_producto) references n_productos (cod_prod), foreign key (cod_vendedor) references n_vendedores (cod_vendedor));
+
+
+alterar y borrar campo
+alter table n_vendedores drop telefono;
+
+alterar y añadir campo
+alter table n-vendedores add telefono varchar(9);
+
+alterar y añadir clave principal
+alter table n_vendedores add foreign key (cc) references ciudades (cc);
+
+alterar y borrar atributo clave principal
+alter table n_vendedores drop primary key;
+
+cambiar nombre o tipo a un cambio:
+alter table n_vendedores change nombre nombre varchar(30);
+
+
+cambiar melones po el nombre de frutas 
+update productos set cod_grupo=2 where nom_prod="melones"
+
+
+borrar los registros del grupo tres 
+delete from productos where cod_grupo=3;
+
+
+crear consultas que visualice todos los productos
+select codproducto, nombreproducto from productos;
+
+
+select codproducto, nombreproducto, preciounidad from productos;
+select codproducto, nombreproducto, preciounidad from productos order by codproducto;
+
+
+sacar los productos que valgan cuyo precio sea menor de 10€
+select codproducto, nombreproducto, preciounidad from productos where preciounidad <10;
+select codproducto, nombreproducto, preciounidad from productos where preciounidad =5;
+select codproducto, nombreproducto, preciounidad from productos where preciounidad <=10;
+select codproducto, nombreproducto, preciounidad from productos where preciounidad <10 or preciounidad =10;
+
+
+visualizar los productos cuyo precio este entre 5 y 10
+select codproducto, nombreproducto, preciounidad from productos where preciounidad >5 and preciounidad <10;
+
+
+obtener visualizar las ventas que estan enntre e 2000-02-10 y 2000-04-12 
+select fechaventa from ventas where fechaventa >"2000-02-10" and fechaventa <"2000-04-12";
+
+
+obtener los clientes de la tabla tiene que salir codigo de cliente, nombre y localidad
+select codcliente, nombre, localidad from clientes;
+select codcliente, nombre, localidad from clientes where provincia="cantabria";
+
+
+destinos a paris que vayan en tren 
+select coddest, ciudad, mediotrans from destinos where mediotrans="tren" and ciudad="paris";
+
+
+viajes organizados cuyo código de viaje es 1 y que valga menos de 2550 €
+select codviaje, precio from viajesorganizados where codviaje=1 and precio <2550;
+
+
+visualizar las escalas del viaje numero 1
+select coddest from escalas where codviaje=1;
+
+
+obtener las reservas del cliente 20 en el que el número de personas sea menor que 5
+select codcliente, codviaje, nperso from reservas where nperso <5 and codcliente=20;
+
+
+obtener codcliente nombre y region los clientes de españa de la region de baercelona 
+select codigocliente, nombrecliente, region from clientes where region="barcelona";
+
+
+sacar los de la region de madrid cuyo limite de creidito sea menor de 30000€
+select codigocliente, nombrecliente, region, limitecredito from clientes where limitecredito <30000 and region="madrid"; 
+
+
+visualizar los niveles de 1 y 2 ciclo cod_curso, descripcion, turno 
+select cod_curso, descripcion, turno from cursos where etapa="primer ciclo" or etapa="segundo ciclo"; 
+
+
+obtener los alumnos de alcal de segundo curso matricula nombre alumno poblacion codcurso
+select cod_curso, num_matricula, nombre, poblacion from alumnos where (cod_curso="ss001" or cod_curso="ss002") and poblacion="alcal";
+
+
+sacar los alumnos de guadalajara y alcal de primero de secundaria 
+select cod_curso, num_matricula, nombre, poblacion from alumnos where (poblacion="guadalajara" or poblacion="alcal") and cod_curso="ps001";
+
+
+seleccionar todos los alumnos de ps00... y que vivan en alcal y guadalajara 
+select cod_curso, num_matricula, nombre, poblacion from alumnos where (poblacion="guadalajara" or poblacion="alcal") and (cod_curso="ps001" or cod_curso="ps002" or cod_curso="ps003");
+
+
+visualiz las asignaturas de modalidad cod_asignatura denominacion tipo
+select cod_asignatura, denominacion, tipo from asignaturas where tipo="troncal";
+
+
+visualizar los añlumnos que hayan suspendido la asuignatura nume:10
+select cod_asignatura, num_matricula, nota from cursa where nota <5 and cod_asignatura=10;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

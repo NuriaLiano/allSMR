@@ -1,0 +1,170 @@
+Conectarnos entre 2 ordenadores
+Tener desactivado el firewall de los dos ordenadores
+
+	Crear
+	Si estamos en el cmd:
+Cd c:\wamp\bin\mysql\mysql15.5.16\bin
+Mysql –h “localhost” –u root
+Créate user nombre@”Ipnombre”
+Grant all privileges on *.* to nombre@”ipnombre”
+	
+	Si no estamos en el cmd :
+Mysql –h “localhost” –u root
+Créate user nombre@”Ipnombre”
+Grant all privileges on *.* to nombre@”ipnombre”
+
+Para activar la tabla “VENTAS”
+Use ventas;
+
+Ver las tablas y sus campos
+Show tables;
+
+Ver la tabla clientes
+Describe clientes;
+
+Visualizar todos los campos de la tabla “CLIENTES”
+Select * from clientes;
+
+Crear una base de datos
+create database ---?---;
+
+Crear tabla ventas
+create table ventas (cod_vend int(2), cod_prod int(2), fecha datetime, kilos double, primary key (cod_vend, cod_prod, fecha),
+foreing key (cod_vend) references vendedores (cod_vend) foreing key (cod_prod) references productos (cod_prod));
+
+Quitar de nuevo la clave principal (primary key)
+alter table detalles drop primary key;
+
+Poner de neuvo la clave principal (primary key)
+alter table detalles add primary key;
+
+Cambiar nombre a una tabla, VENTAS=VENTA
+rename table VENTAS to Venta
+
+
+	Ejemplos:
+Un producto <2€
+Select * from productos where cod_grupo=1 and precio <2;
+	
+Todos los productos de frutas y <2€
+Select *from productos where cod_grupo=1 or precio <2;
+	
+Visualizar los pedidos del cliente nº2
+Select codcliente, codpedido, codproducto from ventas where codcliente=2;
+
+Visualizar todo los productos de la tabla;
+select * from productos;
+	
+Obtener un listado de los vendedores de Madrid y Barcelona. Sacar el código de vendedor y la población
+Select cod_vendedor, población, nom_vendedor from vendedores where población=”Madrid” or población=”barcelona”;
+	
+Obtener de la tabla ventas los pedidos cuya fecha este entre el 29/04/2003 hasta el 31/12/2004
+Select * from ventas where fecha>”2003-04-29” and fecha<”2004-12-31”;
+	
+Visualizar de la tabla viajes organizados lso viajes que estén el 2000-01-01 hasta 2005-02-03 cuyo precio sea inferior a 2600€
+Use agencia
+Show tables
+Describe viajesorganizdos
+Select codviaje, nperso, fechasal from viajesorganizados where fechasal>”2000-01-01” and fechasal>”2005-02-03” and precio<2600;
+	
+Tabla reservas, obtener los viajes reservados por el cliente cuyo código es 20.
+Use agencia
+Show tables
+Describe reservas
+Select * from reservas where cod_cliente=20;
+
+Crear un usuario que se conecte de forma local al servidor y darle los derechos de select, updaate, insert, delet sobre todas las bases de datos
+create user rut@"localhost";
+grant select, update, insert, delate on *.* to rut@"localhost";
+
+Cambiar la contraseña de un usuario
+set password= password("NuevaContraseña");
+
+Borrar contraseña
+set password= password("")
+
+Insertar dentro de la tabla CLIENTES los campos cod_clientes, nombre y domicilio, rellenando campos
+insert into "CLIENTES" ("cod_clientes", "nombre", "domicilio") valves (20, "luis ruiz", "calle pamplona"), (21, "ana", "calle cadiz");
+
+Insertar de la tabla ya creada "CLIENTES" los campos (c1,c2,c3) en la tabla "NCLIENTES"
+insert into NCLIENTES (nc1,nc2,nc3) select c1, c2, c3 from CLIENTES;
+
+Incluir la columna CARNE en la tabla VERDULEROS, GRUPOS
+use verduleros;
+show tables;
+describe grupos;
+insert into grupos (cod_grupo, nom_grupo) valves (4"carne");
+
+Añadir a la tabla PRODUCTOS, el producto cuyo codigo 16,chuleton, pertenece al grupo 4 y vale 0,50€
+insert into PRODUCTOS (cod_prod, nom_prod, cod_grupo, precio) valves (16,"chuleton",4,0.50);
+
+Borrar de n_productos los productos que pertenecezcan al grupo3
+delate from n_productos where cod_grupo="3";
+
+Tabla VENDEDORES, añadir campo TELEFONO varchar(9), que este situado despues de nombre
+alter table VENDEDORES add TELEFONO varchar(9) after num_vend;
+
+             EXAMEN DANI:
+Crea una base de datos EXAMEN y en ella una tabla llamada exa con un solo campo, nombre de tipo varchar 30
+create database EXAMEN;
+use examen;
+create table exa(nombre varchar(30));
+describe exa
+
+Añadir el campo DNI varchar(10) al principio
+alter table EXA add DNI varchar(10);
+
+Añadir TELEFONO varchar(9) al final
+alter table EXA add TELEFONO varchar(9);
+
+Cambiar el TELEFONO a tipo entero
+alter table EXA change TELEFONO TELEFONO int(9);
+
+Añadir el campo DIRECCION varchar(40) antes de telefono. 
+alter table EXA add direccion varchar(40) after DNI;
+
+A continuacion borrar DIRECCION.
+alter table EXA drop DIRECCION;
+
+Cambia el nombre de la tabla exa por exam y ponle como clave principal el dni
+rename table EXA to EXAM;
+
+
+Añade a DNI el atributo de clave principal
+alter table EXAM add primary key (DNI);
+describe EXAM;
+
+Despues quita a DNI el atributo de clave principal
+alter table EXAM drop primary key;
+describe EXAM;
+
+Crea el usuario usu1 que tenga todos los derechos sobre la base de datos examen y 
+que sólo se pueda conectar desde el servidor.
+grant all privileges on EXAM.* to usu1@localhost;
+sho grants for usu1@localhost;
+
+Crea usu3 para que sólo pueda acceder desde el puesto1, y otorgarle los derechos
+de update sobre el campo teléfono, y select sobre todos los campos. Base de datos EXAMEN.
+grant update (telefono), select on eamen.exam to usu2@"puesto1";
+
+Obtener el código de cliente, el nombre y la dirección del los clientes de Toledo.
+select codcliente, nombre, direccion from clientes where poblacion="toledo";
+
+Obtener codcliente, nombre y poblacion de los clientes de Toledo
+select codcliente, nombre, poblacion from clientes where poblacion="toledo";
+
+
+Listar los productos cuyos precios sean mayor que 100 y menor que 300.
+select * from productos where preciounidad>100 and preciounidad<300;
+
+Listar codproducto   nombreproducto Preciounidad que sean mayor que 100 y menor que 300.
+select codproducto,nombreproducto, Preciounidad from productos where preciounidad>100 and preciounidad<300;
+
+Visualizar los pedidos del cliente cuyo código es el 3.
+Select * from ventas where codcliente="3";
+
+Visualizar Codpedido, codcliente, codproducto, fechaventa cuyo código es el 3.
+select Codpedido, codcliente, codproducto, fechaventa from ventas where cod_cliente="3";
+
+
+
