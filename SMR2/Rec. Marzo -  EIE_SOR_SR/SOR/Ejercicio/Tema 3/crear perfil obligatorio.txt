@@ -1,0 +1,7 @@
+1. Dentro de la carpeta perfiles, intentar entrar en el perfil y no se puede entrar
+2. boton derecho sobre la carpeta del perfil y propiedades
+3. en seguridad, opciones avanzadas, hacer propietario al admin en la pestaña propietario, editar,grupo administradores
+4. en seguridad añadir los administradores del dominio dar control total
+5. ver ocultos
+6. en el archivo netuser.dat ir a propiedades>seguridad>opciones av> propietario>seleccionar al administrador
+7. cambiar el nombre de netuser.dat por netuser.man
