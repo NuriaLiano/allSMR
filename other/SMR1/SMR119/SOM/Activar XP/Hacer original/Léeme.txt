@@ -1,0 +1,17 @@
+Para hacer original el Windows XP, (ojo, no es lo mismo que activar) debemos:
+
+Abrir el "Hacelo original.exe" y dejar que trabaje
+Abrir la entrada de registro "licencia XP" y dejar que trabaje.
+
+Cuando haya terminado, reinicia tu PC y pincha en "legitcheck".
+
+Si al abrir el legitcheck pone:
+"¡Bienvenido a Windows!
+La instalación de Windows en su equipo es original, 
+de modo que puede disfrutar de la seguridad, confiabilidad y protección que ofrece."
+sobre un fondo verde, quiere decir que tu copia de Windows XP es original.
+
+Si pone otra cosa sobre un fondo azul, no es original, repite el proceso.
+
+
+Antonio
